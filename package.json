@@ -3,14 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "node": "^14.5.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-google-login": "^5.1.21",
+    "react-icons": "^3.10.0",
+    "react-kakao-login": "^1.2.2",
+    "react-modal": "^3.11.2",
     "react-scripts": "3.4.1",
-    "sass": "^1.26.10"
+    "react-slick": "^0.27.1",
+    "reactstrap": "^8.5.1",
+    "sass": "^1.26.10",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^5.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
