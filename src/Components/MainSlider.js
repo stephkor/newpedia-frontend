@@ -1,59 +1,43 @@
 import React  from 'react';
 import Slider from "react-slick";
+import {useState, useEffect} from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+const  MainSlider = () => {
+  
+  const [data, setData] = useState([]);
+   
+  useEffect(() => {
+    fetch('mock.json')
+    .then((res)=> res.json())
+    .then((res) => {
+      setData(res.dic_info)
+    });
+  },[])
 
-export default class MainSlider extends React.Component {
-  render () {
+
     var settings = {
       dots: false,
       infinite: true,
       slidesToShow: 3,
       autoplay: true,
-      autoplaySpeed: 4000,
+      autoplaySpeed: 3500,
       pauseOnHover: true
     };
+
+
     return (
-
-      <Slider {...settings}>
-        <div className="component" style={{backgroundColor: "yellow"}}>
+      <Slider {...settings} >
+      {data.map((data, index)=> <div className="component" style={{backgroundColor: "yellow"}} key={index} data={data} >
           <div>
-            <h3>단어</h3>
-            <p>아마 여기에 뜻이 나오겠지?</p>
-            <span>여기가 예시자리</span> 
+            <h3>{data.title}</h3>
+            <p>{data.explanation}</p>
+            <span>{data.example}</span> 
           </div>
-        </div>
-        <div className="component">
-          <div>
-            <h3>단어</h3>
-            <p>아마 여기에 뜻이 나오겠지?</p>
-            <span>여기가 예시자리</span> 
-          </div>
-        </div>
-        <div className="component">
-          <div>
-            <h3>단어</h3>
-            <p>아마 여기에 뜻이 나오겠지?</p>
-            <span>여기가 예시자리</span> 
-          </div>
-        </div>
-        <div className="component">
-          <div>
-            <h3>단어</h3>
-            <p>아마 여기에 뜻이 나오겠지?</p>
-            <span>여기가 예시자리</span> 
-          </div>
-        </div>
-        <div className="component">
-          <div>
-            <h3>단어</h3>
-            <p>아마 여기에 뜻이 나오겠지?</p>
-            <span>여기가 예시자리</span> 
-          </div>
-        </div>
+        </div>)}  
       </Slider>
-
     )
   }
-}
+
+  export default MainSlider;

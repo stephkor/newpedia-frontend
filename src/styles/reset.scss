@@ -151,12 +151,14 @@ input[type='search'] {
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
+	border: none;
 }
 
 textarea {
 	overflow: auto;
 	vertical-align: top;
 	resize: vertical;
+	border: none;
 }
 
 /**

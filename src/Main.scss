@@ -1,6 +1,6 @@
 .Main {
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 
 	header {
 		max-width: 1280px;
@@ -99,6 +99,8 @@
 					height: 50px;
 					border-radius: 50px;
 					background-color: #ffffff;
+					font-size: 30px;
+					font-weight: 200;
 				}
 
 				input::placeholder {
@@ -124,17 +126,50 @@
 				background-color: transparent;
 				color: transparent;
 			}
+			.slick-list {
+				max-width: 1280px;
+			}
 			.slick-slide {
-				border: 1px solid;
+				padding: 5px;
+				.slick-current {
+					width: 300px;
+					border: 1px solid;
+				}
+
 				div {
-					padding: 15px;
+					border-radius: 25px;
+					padding: 5px;
+					width: 300px;
 					.component {
 						border: 1px solid;
-						width: 200px;
-						height: 400px;
-						padding: 15px;
+						min-height: 300px;
+						box-shadow: 1px 5px 10px 1px gray;
+
 						div {
-							background-color: yellow;
+							width: 280px;
+							min-height: 300px;
+							display: flex;
+							flex-direction: column;
+							align-items: flex-start;
+							justify-content: space-between;
+
+							h3 {
+								font-size: 32px;
+								font-weight: 700;
+								padding: 15px;
+							}
+
+							p {
+								font-size: 24px;
+								font-weight: 300;
+								padding: 15px;
+							}
+
+							span {
+								font-size: 20px;
+								font-weight: 300;
+								padding: 15px;
+							}
 						}
 					}
 				}
@@ -151,6 +186,69 @@
 				color: #ffffff;
 				padding: 10%;
 				text-align: center;
+			}
+		}
+	}
+
+	.main_card_wrap {
+		max-width: 1280px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		margin: auto;
+
+		.main_card {
+			width: 100%;
+			text-align: center;
+
+			.card_filter {
+				display: block;
+				width: 100%;
+				font-size: 39.5px;
+				font-weight: 300;
+				background-color: #f6f6f6;
+				padding: 5% 0;
+				p {
+					select {
+						padding: 0 3%;
+						margin: 0 10px;
+						option {
+							padding: 3%;
+						}
+					}
+				}
+			}
+			.card_list {
+				display: flex;
+				align-items: center;
+				justify-content: space-around;
+				flex-direction: column;
+				margin: auto;
+
+				.MainCard {
+					width: 80%;
+					height: 10%;
+					margin: 5% 0;
+					.card {
+						border: 1px solid;
+						text-align: left;
+						padding: 5%;
+						h1 {
+							font-size: 37.5px;
+							font-weight: 800;
+						}
+						p {
+							font-size: 24px;
+							font-weight: 200;
+							padding: 20px 0;
+						}
+						span {
+							font-size: 20px;
+							font-weight: 600;
+						}
+					}
+				}
 			}
 		}
 	}
