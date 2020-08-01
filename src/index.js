@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Main from './Main';
-import Register from "./Pages/Register"
+import Main from './Pages/Main/Main';
+import Register from "./Pages/Register/Register"
 import "./styles/reset.scss"
 
 ReactDOM.render(

@@ -2,7 +2,7 @@ import React from 'react';
 import "./Main.scss";
 import LoginModal from "Components/Modal";
 import MainSlider from "Components/MainSlider";
-import MainCard from "../src/Pages/MainCard";
+import MainCard from "./MainCard";
 
 
 
