@@ -5,11 +5,11 @@ const Main = () => {
   return (
     <div className="Main">
       <nav>
-          <ul className="nav_top">
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
+      		<ul className="nav_top">
+      			<li></li>
+      			<li></li>
+      			<li></li>
+      		</ul>
       </nav>
     </div>
   );
