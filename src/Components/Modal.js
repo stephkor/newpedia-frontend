@@ -13,6 +13,7 @@ class LoginModal extends React.Component {
       open: false,
       data: 'kakao',
       token: "",
+      googleData : 'google'
     }
   }
 
@@ -30,12 +31,12 @@ class LoginModal extends React.Component {
 
   responseKaKao = (res) => {
     const { data } = this.state;
-
+   
     this.setState({
       data: res,
     });
 
-    fetch(`http://10.58.3.22:8000/account/sign-in/kakao`, {
+    fetch('http://10.58.3.22:8000/account/sign-in/kakao', {
       //백엔드에서 원하는 형태의 endpoint로 입력해서 fetch한다. 
       method: 'POST',
       headers: {
@@ -52,10 +53,16 @@ class LoginModal extends React.Component {
             alert('로그인이 완료되었습니다');
   };
 
+ responseGoogle = (res) => {
+   const {googleData} = this.state;
 
+   this.setState({
+     googleData: res,
+   })
+   
+ }
 
   render () {
-    console.log()
   return (
     <>
     <LoginButton type="button" onClick={()=>this.handleOpen()}>
@@ -74,7 +81,7 @@ class LoginModal extends React.Component {
           <p>로그인 후에는 단어 등록이 가능합니다</p>
             <button>
               <KakaoLogin
-              jsKey={`da1d636cd0f3a43fab28ca240132e346`}
+              jsKey={'da1d636cd0f3a43fab28ca240132e346'}
               buttonText='카카오 계정으로 로그인'
               onSuccess={(res)=>this.responseKaKao(res)}
               getProfile={true} />
@@ -92,7 +99,7 @@ class LoginModal extends React.Component {
             />
         </div>
       </ModalBody>
-</Modal>
+  </Modal>
 </>
   )
   }

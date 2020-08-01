@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Main from './Pages/Main/Main';
-import Register from "./Pages/Register/Register"
+import Routes from './Routes';
 import "./styles/reset.scss"
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Main /> */}
-    <Register />
+    <Routes />
   </React.StrictMode>,
   document.getElementById('root')
 );
