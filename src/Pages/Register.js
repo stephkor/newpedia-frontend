@@ -36,9 +36,6 @@ const Register = () => {
             <h1>예시</h1>
             <textarea placeholder="예시를 입력해 주세요"/>
           </div>
-
-          
-
         </main>
       </section>
     
