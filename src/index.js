@@ -4,8 +4,6 @@ import Main from './Main';
 import Register from "./Pages/Register"
 import "./styles/reset.scss"
 
-
-
 ReactDOM.render(
   <React.StrictMode>
     {/* <Main /> */}

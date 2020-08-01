@@ -71,8 +71,6 @@ const Main = () => {
             <MainCard/>
             <MainCard/>
           </div>
-        
-        
         </main>
       </section>
 
