@@ -13,7 +13,8 @@ class LoginModal extends React.Component {
       open: false,
       data: 'kakao',
       token: "",
-      googleData : 'google'
+      googleData : 'google',
+      login : "로그인"
     }
   }
 
@@ -34,6 +35,7 @@ class LoginModal extends React.Component {
    
     this.setState({
       data: res,
+      login: "로그아웃"
     });
 
     fetch('http://10.58.3.22:8000/account/sign-in/kakao', {
@@ -50,7 +52,8 @@ class LoginModal extends React.Component {
             //여기서 중요한것은 처음에 console.log(res)해서 들어오는 
             //access_token 값을 백엔드에 전달해줘서 백엔드에 저장 해두는 
             //절차가 있으므로 까먹지 말 것! 
-            alert('로그인이 완료되었습니다');
+            alert('로그인이 완료되었습니다')
+            
   };
 
  responseGoogle = (res) => {
@@ -66,7 +69,7 @@ class LoginModal extends React.Component {
   return (
     <>
     <LoginButton type="button" onClick={()=>this.handleOpen()}>
-     로그인 
+      {this.state.login}
     </LoginButton>
     <Modal
     open={this.state.open}
