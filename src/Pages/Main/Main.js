@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect}  from 'react';
 import "./Main.scss";
 import LoginModal from "Components/Modal";
 import MainSlider from "Components/MainSlider";
@@ -8,6 +8,15 @@ import MainCard from "./MainCard";
 
 
 const Main = () => {
+  
+  const [login, setLogin] = useState("로그인");
+  const [search, setSearch] = useState("")
+  
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
+  }
+  
+  
   
   return (
     <div className="Main">
@@ -41,7 +50,7 @@ const Main = () => {
             <h1><span>오늘의 신조어</span>를 확인하세요.</h1>
           </div>  
           <div className="search">
-            <input placeholder="단어를 검색해보세요" />
+            <input placeholder="단어를 검색해보세요" onChange={(e)=>handleSearch(e)}/>
           </div>
         </div>
         <MainSlider className="main_top_slider" />
