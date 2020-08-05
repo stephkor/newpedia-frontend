@@ -9,7 +9,7 @@ const  MainSlider = () => {
   const [data, setData] = useState([]);
    
   useEffect(() => {
-    fetch('sliderWords.json')
+    fetch('http://10.58.3.54:8000/word/sub-list')
     .then((res)=> res.json())
     .then((res) => {
       setData(res.sub_word_list)
