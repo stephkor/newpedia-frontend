@@ -1,8 +1,8 @@
 import React, {useState, useEffect}  from 'react';
-import "./Main.scss";
 import LoginModal from "Components/Modal";
 import MainSlider from "Components/MainSlider";
 import MainCard from "./MainCard";
+import "./Main.scss";
 
 
 
@@ -16,13 +16,24 @@ const Main = () => {
     setSearch(e.target.value)
   }
   
-  useEffect((data) => {
-    fetch('mainWordList.json')
+  useEffect(() => {
+    fetch('http://10.58.3.54:8000/word/main-list')
       .then((res)=> res.json())
       .then((res) => {
         setMainWord(res.main_word_list)
       });
   },[])
+  
+ const searchWords = (url, data) => {
+    fetch('http://10.58.3.54:8000/search/list', {
+    method: 'POST',
+      headers: {'Content-Type' : 'application/json'},
+      body: JSON.stringify({"search_word" : search})
+  })
+  .then(res => res.json())
+  }
+  
+  
   
   
   return (
@@ -57,7 +68,7 @@ const Main = () => {
             <h1><span>오늘의 신조어</span>를 확인하세요.</h1>
           </div>  
           <div className="search">
-            <input placeholder="단어를 검색해보세요" onChange={(e)=>handleSearch(e)}/>
+            <input placeholder="단어를 검색해보세요" onChange={(e)=>handleSearch(e)} onKeyDown={searchWords()}/>
           </div>
         </div>
         <MainSlider className="main_top_slider" />
@@ -80,7 +91,7 @@ const Main = () => {
             </p> 
           </div>
           <div className="card_list">
-            {mainWord.map((data,index)=> <MainCard data={data} index={index} /> )}
+            {mainWord && mainWord.map((data,index)=> <MainCard data={data} index={index} /> )}
           </div>
         </main>
       </section>

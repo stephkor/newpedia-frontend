@@ -9,12 +9,26 @@ const  MainSlider = () => {
   const [data, setData] = useState([]);
    
   useEffect(() => {
-    fetch('sliderWords.json')
+    fetch('http://10.58.3.54:8000/word/sub-list')
     .then((res)=> res.json())
     .then((res) => {
       setData(res.sub_word_list)
     });
   },[])
+
+  const descriptionCut = (data) => {
+    let result;
+      if (data.word_description.length > 80) {
+        result = data.word_description.slice(0, 80) + '...'
+      } else {
+        result = data.word_description
+      }
+      return result;
+    }
+    
+  
+  
+  
 
   
 
@@ -35,7 +49,7 @@ const  MainSlider = () => {
       {data.map((data, index)=> <div className="component" style={{backgroundColor: "yellow"}} key={index} data={data} >
           <div>
             <h3>{data.word_name}</h3>
-            <p>{data.word_description.slice(0,80) + '...'}</p>
+            <p>{descriptionCut(data)}</p>
             <span>{data.word_example}</span>
           </div>
         </div>)}  
