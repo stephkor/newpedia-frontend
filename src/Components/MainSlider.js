@@ -9,12 +9,15 @@ const  MainSlider = () => {
   const [data, setData] = useState([]);
    
   useEffect(() => {
-    fetch('mock.json')
+    fetch('sliderWords.json')
     .then((res)=> res.json())
     .then((res) => {
-      setData(res.dic_info)
+      setData(res.sub_word_list)
     });
   },[])
+
+  
+
 
 
     var settings = {
@@ -31,9 +34,9 @@ const  MainSlider = () => {
       <Slider {...settings} >
       {data.map((data, index)=> <div className="component" style={{backgroundColor: "yellow"}} key={index} data={data} >
           <div>
-            <h3>{data.title}</h3>
-            <p>{data.explanation}</p>
-            <span>{data.example}</span> 
+            <h3>{data.word_name}</h3>
+            <p>{data.word_description.slice(0,80) + '...'}</p>
+            <span>{data.word_example}</span>
           </div>
         </div>)}  
       </Slider>

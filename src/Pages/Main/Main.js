@@ -8,14 +8,21 @@ import MainCard from "./MainCard";
 
 
 const Main = () => {
-  
   const [login, setLogin] = useState("로그인");
   const [search, setSearch] = useState("")
+  const [mainWord, setMainWord] = useState([]);
   
   const handleSearch = (e) => {
     setSearch(e.target.value)
   }
   
+  useEffect((data) => {
+    fetch('mainWordList.json')
+      .then((res)=> res.json())
+      .then((res) => {
+        setMainWord(res.main_word_list)
+      });
+  },[])
   
   
   return (
@@ -73,12 +80,7 @@ const Main = () => {
             </p> 
           </div>
           <div className="card_list">
-            <MainCard/>
-            <MainCard/>
-            <MainCard/>
-            <MainCard/>
-            <MainCard/>
-            <MainCard/>
+            {mainWord.map((data,index)=> <MainCard data={data} index={index} /> )}
           </div>
         </main>
       </section>
