@@ -1,8 +1,8 @@
 import React, {useState, useEffect}  from 'react';
-import "./Main.scss";
 import LoginModal from "Components/Modal";
 import MainSlider from "Components/MainSlider";
 import MainCard from "./MainCard";
+import "./Main.scss";
 
 
 
@@ -23,6 +23,17 @@ const Main = () => {
         setMainWord(res.main_word_list)
       });
   },[])
+  
+ const searchWords = (url = 'http://localhost:8000/search', data = {search}) => {
+    fetch(url, {
+    method: 'POST',
+      headers: {'Content-Type' : 'application/json'},
+      body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  }
+  
+  
   
   
   return (
@@ -57,7 +68,7 @@ const Main = () => {
             <h1><span>오늘의 신조어</span>를 확인하세요.</h1>
           </div>  
           <div className="search">
-            <input placeholder="단어를 검색해보세요" onChange={(e)=>handleSearch(e)}/>
+            <input placeholder="단어를 검색해보세요" onChange={(e)=>handleSearch(e)} onkeydown={searchWords()}/>
           </div>
         </div>
         <MainSlider className="main_top_slider" />
