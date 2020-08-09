@@ -14,6 +14,10 @@ const MainCard = ({data, index}) => {
     setLike(like + 1);
   }
   
+  const onDoubleClick = () => {
+    setLike(like -1);
+  }
+  
   
   return (
     <div className="MainCard" key={index}>
@@ -21,7 +25,7 @@ const MainCard = ({data, index}) => {
         <h1>{data && data.word_name}</h1>
         <p>{data && data.word_description}</p>
         <span>{data && data.word_example}</span>
-        <button onClick={onLike}><img src={likeImg}/> <span>{like}</span>   </button>
+        <button onClick={ click ? ()=> onLike() : ()=>onDoubleClick() }><img src={likeImg}/><span>{like}</span></button>
         <button><img src={dislikeImg}/> <span>{data.word_dislike}</span>  </button>
       </div>
     </div>

@@ -1,0 +1,50 @@
+{
+  "search_word_list": [
+    {
+      "word_id": 1,
+      "word_name": "가즈아",
+      "word_description": "도박이나 투자에서 긍정적인 기대를 표현하는 감탄사로, 소망을 말할 때 사용되는 단어로 의미가 확장되었다.",
+      "word_example": "",
+      "word_like": 0,
+      "word_dislike": 0,
+      "word_category": [
+        "경제",
+        "커뮤니티"
+      ]
+    },
+    {
+      "word_id": 34,
+      "word_name": "가성비",
+      "word_description": "가격 대비 성능이 주는 효용.",
+      "word_example": "",
+      "word_like": 0,
+      "word_dislike": 0,
+      "word_category": [
+        "경제"
+      ]
+    },
+    {
+      "word_id": 35,
+      "word_name": "가심비",
+      "word_description": "가격 대비 심리적 만족도가 주는 효용.",
+      "word_example": "",
+      "word_like": 0,
+      "word_dislike": 0,
+      "word_category": [
+        "경제",
+        "문화"
+      ]
+    },
+    {
+      "word_id": 94,
+      "word_name": "좋은가봉가",
+      "word_description": "2013년에 MBC 예능 《아빠! 어디가?》에서 나온 유행어이다. 프로그램에 출연하는 윤후라는 8살짜리 남자아이가 여자아이인 지아라는 아이가 자기를 좋아하는 것 같다는 뜻에서 '지아가 나가 좋은가봉가'라는 말을 하였다. 아이의 순수하고 귀여운 모습에 '좋은가봉가'는 유행어가 되었다.",
+      "word_example": "",
+      "word_like": 0,
+      "word_dislike": 0,
+      "word_category": [
+        "방송"
+      ]
+    }
+  ]
+}

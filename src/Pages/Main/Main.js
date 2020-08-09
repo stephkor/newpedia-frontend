@@ -2,6 +2,11 @@ import React, {useState, useEffect}  from 'react';
 import LoginModal from "Components/Modal";
 import MainSlider from "Components/MainSlider";
 import MainCard from "./MainCard";
+import SearchResult from "./SearchResult";
+import MyPage from "./my_ico.png"
+import Bird from'./bird.png'
+import Background from "./background.png"
+import YellowDot from "./yellowdot.png"
 import "./Main.scss";
 
 
@@ -11,28 +16,40 @@ const Main = () => {
   const [login, setLogin] = useState("로그인");
   const [search, setSearch] = useState("")
   const [mainWord, setMainWord] = useState([]);
+  const [searchData, setSearchData] = useState([]);
+  
   
   const handleSearch = (e) => {
     setSearch(e.target.value)
   }
   
   useEffect(() => {
-    fetch('http://10.58.3.54:8000/word/main-list')
+    fetch('mainWordList.json')
       .then((res)=> res.json())
       .then((res) => {
         setMainWord(res.main_word_list)
       });
   },[])
   
- const searchWords = (url, data) => {
-    fetch('http://10.58.3.54:8000/search/list', {
-    method: 'POST',
-      headers: {'Content-Type' : 'application/json'},
-      body: JSON.stringify({"search_word" : search})
-  })
-  .then(res => res.json())
+  
+  const searchWords = () => {
+    fetch('searchMock.json')
+      .then(res => res.json())
+      .then (res => {setSearchData(res.search_word_list)})
   }
   
+  
+  
+  // const searchWords = (url, data) => {
+ //    fetch('http://10.58.7.43:8000/search/list', {
+ //    method: 'POST',
+ //      headers: {'Content-Type' : 'application/json'},
+ //      body: JSON.stringify({"search_word" : search})
+ //  })
+ //  .then(res => res.json())
+ //      .then (res => setSearch(res.search_word_list))
+ //  }
+ //
   
   
   
@@ -43,7 +60,7 @@ const Main = () => {
       		<ul className="nav_top">
       			<li>안녕하세요</li>
       			<li className="user_name">뉴피디아 님</li>
-      			<li> 아이콘자리</li>
+      			<li><img src={MyPage} alt="mypage_Icon" /></li>
             <li><LoginModal/></li>
       		</ul>
         </div>
@@ -62,13 +79,18 @@ const Main = () => {
         </div>
       </header>
       <section className="main_top_wrap">
+        
         <div className="main_top">
+          <img src={Background} className="bg" />
+          <img src={YellowDot} className="dot_small" />
+          <img src={YellowDot} className="dot_large" />
           <div>
             <h2>내가 궁금했던, 새로운 단어들까지,</h2>
             <h1><span>오늘의 신조어</span>를 확인하세요.</h1>
           </div>  
           <div className="search">
             <input placeholder="단어를 검색해보세요" onChange={(e)=>handleSearch(e)} onKeyDown={searchWords()}/>
+            {searchData && searchData.map((data,index) => <SearchResult data={data} index={index}/>)}
           </div>
         </div>
         <MainSlider className="main_top_slider" />
@@ -76,9 +98,12 @@ const Main = () => {
           <p>뉴피디아는 그동안 당신이 궁금했던, 그리고 몰랐던 새로운 신조어들을 제공합니다.<br/>
           빠르게 생성되고 사라지는 신조어들 중 알고 싶지만 정확하게 그 뜻을 찾기 어려웠던 신조어들. 지금 바로 만나보세요!
           </p>
+          <div className="background">
+            <img src={Bird}/>
+          </div>
         </div>
       </section>
-
+      
       <section className="main_card_wrap">
         <main className="main_card">
           <div className="card_filter">

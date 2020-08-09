@@ -9,7 +9,7 @@ const  MainSlider = () => {
   const [data, setData] = useState([]);
    
   useEffect(() => {
-    fetch('http://10.58.3.54:8000/word/sub-list')
+    fetch('sliderWords.json')
     .then((res)=> res.json())
     .then((res) => {
       setData(res.sub_word_list)
@@ -27,13 +27,6 @@ const  MainSlider = () => {
     }
     
   
-  
-  
-
-  
-
-
-
     var settings = {
       dots: false,
       infinite: true,
@@ -49,8 +42,8 @@ const  MainSlider = () => {
       {data.map((data, index)=> <div className="component" style={{backgroundColor: "yellow"}} key={index} data={data} >
           <div>
             <h3>{data.word_name}</h3>
-            <p>{descriptionCut(data)}</p>
-            <span>{data.word_example}</span>
+            <p><span> 	뜻&#41; </span> <br/>{descriptionCut(data)}</p>
+            <h4>{data.word_example}</h4>
           </div>
         </div>)}  
       </Slider>

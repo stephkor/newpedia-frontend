@@ -57,6 +57,11 @@ const Register = () => {
             <textarea placeholder="예시를 입력해 주세요"/>
           </div>
         </main>
+        
+          <div className="register">
+            <p>다음과 같이 등록하시겠습니까?</p>
+            <span></span>
+          </div>
       </section>
     
     </div>
