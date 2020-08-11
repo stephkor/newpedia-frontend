@@ -38,7 +38,7 @@ class LoginModal extends React.Component {
       login: "로그아웃"
     });
 
-    fetch('http://10.58.3.22:8000/account/sign-in/kakao', {
+    fetch('http://10.58.3.83:8000/account/sign-in/kakao', {
       //백엔드에서 원하는 형태의 endpoint로 입력해서 fetch한다. 
       method: 'POST',
       headers: {
@@ -47,6 +47,7 @@ class LoginModal extends React.Component {
       },
     })
       .then((res) => res.json())
+      // .then((res)=> console.log(res))
       .then((res) => localStorage.setItem('token', res.access_token))
             //백엔드에서 요구하는 key 값(token)으로 저장해서 localStorage에 저장한다.
             //여기서 중요한것은 처음에 console.log(res)해서 들어오는 
@@ -64,6 +65,7 @@ class LoginModal extends React.Component {
  }
 
   render () {
+   console.log(this.state.data)
   return (
     <>
     <LoginButton type="button" onClick={()=>this.handleOpen()}>

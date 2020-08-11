@@ -24,32 +24,42 @@ const Main = () => {
   }
   
   useEffect(() => {
-    fetch('mainWordList.json')
+    fetch('http://10.58.3.83:8000/word/list')
       .then((res)=> res.json())
       .then((res) => {
-        setMainWord(res.main_word_list)
+        setMainWord(res.word_list)
       });
   },[])
+
+
+  // const searchWords = () => {
+  //   fetch('searchMock.json')
+  //     .then(res => res.json())
+  //     .then ((res) => {setSearchData(res.search_word_list)})
+  // }
   
   
-  const searchWords = () => {
-    fetch('searchMock.json')
-      .then(res => res.json())
-      .then (res => {setSearchData(res.search_word_list)})
+  const descriptionCut = (data) => {
+    let result;
+    if (data.word_description.length > 80) {
+      result = data.word_description.slice(0, 80) + '...'
+    } else {
+      result = data.word_description
+    }
+    return result;
   }
-  
-  
-  
-  // const searchWords = (url, data) => {
- //    fetch('http://10.58.7.43:8000/search/list', {
- //    method: 'POST',
- //      headers: {'Content-Type' : 'application/json'},
- //      body: JSON.stringify({"search_word" : search})
- //  })
- //  .then(res => res.json())
- //      .then (res => setSearch(res.search_word_list))
- //  }
- //
+
+
+  const searchWords = () => {
+    fetch('http://10.58.0.113:8000/search/list', {
+    method: 'POST',
+      headers: {'Content-Type' : 'application/json'},
+      body: JSON.stringify({"search_word" : search})
+  })
+      .then(res => res.json())
+      .then (res => {setSearchData(res.search_list)})
+  }
+
   
   
   
@@ -81,36 +91,42 @@ const Main = () => {
       <section className="main_top_wrap">
         
         <div className="main_top">
-          <img src={Background} className="bg" />
+          
           <img src={YellowDot} className="dot_small" />
           <img src={YellowDot} className="dot_large" />
-          <div>
+          <div className="narr">
             <h2>내가 궁금했던, 새로운 단어들까지,</h2>
             <h1><span>오늘의 신조어</span>를 확인하세요.</h1>
           </div>  
           <div className="search">
-            <input placeholder="단어를 검색해보세요" onChange={(e)=>handleSearch(e)} onKeyDown={searchWords()}/>
-            {searchData && searchData.map((data,index) => <SearchResult data={data} index={index}/>)}
+            <input placeholder="단어를 검색해보세요" onChange={(e)=>handleSearch(e)} onKeyUp={(e)=>searchWords(e)} />
+              <div className="SearchResult" style ={{display: searchData ? "block" : "none" }}>
+                {searchData && searchData.map((data,index) =>
+                  <div className="result" key={index} data={data} index={index} >
+                    <p>{data && data.word_name}</p>
+                    <span>{data && " - " + descriptionCut(data)}</span>
+                  </div>)}
+              </div>
           </div>
         </div>
         <MainSlider className="main_top_slider" />
-        <div className="middle_info">
-          <p>뉴피디아는 그동안 당신이 궁금했던, 그리고 몰랐던 새로운 신조어들을 제공합니다.<br/>
-          빠르게 생성되고 사라지는 신조어들 중 알고 싶지만 정확하게 그 뜻을 찾기 어려웠던 신조어들. 지금 바로 만나보세요!
-          </p>
-          <div className="background">
-            <img src={Bird}/>
-          </div>
-        </div>
       </section>
+      <div className="middle_info">
+        <p>뉴피디아는 그동안 당신이 궁금했던, 그리고 몰랐던 새로운 신조어들을 제공합니다.<br/>
+         <br/> 빠르게 생성되고 사라지는 신조어들 중 알고 싶지만 정확하게 그 뜻을 찾기 어려웠던 신조어들. 지금 바로 만나보세요!
+        </p>
+        <div className="background">
+          <img src={Bird}/>
+        </div>
+      </div>
       
       <section className="main_card_wrap">
         <main className="main_card">
           <div className="card_filter">
             <p>나는 지금 
               <select>
-                <option value="최신순">최신순 </option>
-                <option value="인기순"> 인기순 </option>
+                <option value="최신순">최신순</option>
+                <option value="인기순">인기순</option>
               </select>
             으로 보고싶어요
             </p> 
