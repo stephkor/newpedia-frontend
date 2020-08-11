@@ -1,4 +1,5 @@
 import React, {useState, useEffect}  from 'react';
+<<<<<<< HEAD
 import {GrEdit} from "react-icons/gr"
 import {Link} from "react-router-dom"
 import LoginModal from "Components/Modal";
@@ -8,6 +9,9 @@ import MyPage from "./my_ico.png"
 import Bird from'./bird.png'
 import Background from "./background.png"
 import YellowDot from "./yellowdot.png"
+import LoginModal from "Components/Modal";
+import MainSlider from "Components/MainSlider";
+import MainCard from "./MainCard";
 import "./Main.scss";
 
 
@@ -25,6 +29,7 @@ const Main = () => {
     setSearch(e.target.value)
   }
   
+
   // useEffect(() => {
   //   fetch('http://10.58.0.113:8000/word/list')
   //     .then((res)=> res.json())
@@ -35,12 +40,24 @@ const Main = () => {
   //
 
   useEffect(() => {
-    fetch('mainWordList.json')
+    fetch('http://10.58.3.54:8000/word/main-list')
+
       .then((res)=> res.json())
       .then((res) => {
         setMainWord(res.word_list)
       });
   },[])
+  
+ const searchWords = (url, data) => {
+    fetch('http://10.58.3.54:8000/search/list', {
+    method: 'POST',
+      headers: {'Content-Type' : 'application/json'},
+      body: JSON.stringify({"search_word" : search})
+  })
+  .then(res => res.json())
+  }
+  
+  
   
   
   
