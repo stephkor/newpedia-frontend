@@ -1,0 +1,16 @@
+{
+  "word_info": {
+    "word_id": 134,
+    "word_name": "test3",
+    "word_description": "테스트 테스트 중입니다. 마지막",
+    "word_example": "",
+    "word_like": 0,
+    "word_dislike": 2,
+    "word_category": [
+      "게임",
+      "음악"
+    ],
+    "word_created_user": "bmo",
+    "word_updated_user": "bmo0"
+  }
+}

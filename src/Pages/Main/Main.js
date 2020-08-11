@@ -1,38 +1,49 @@
 import React, {useState, useEffect}  from 'react';
+import {GrEdit} from "react-icons/gr"
+import {Link} from "react-router-dom"
 import LoginModal from "Components/Modal";
 import MainSlider from "Components/MainSlider";
 import MainCard from "./MainCard";
-import SearchResult from "./SearchResult";
 import MyPage from "./my_ico.png"
 import Bird from'./bird.png'
 import Background from "./background.png"
 import YellowDot from "./yellowdot.png"
-import NickNameModal from "Components/NickName";
 import "./Main.scss";
 
 
 
 
 const Main = () => {
-  const [login, setLogin] = useState("로그인");
   const [search, setSearch] = useState("")
   const [mainWord, setMainWord] = useState([]);
   const [searchData, setSearchData] = useState([]);
+
+ 
   
   
   const handleSearch = (e) => {
     setSearch(e.target.value)
   }
   
+  // useEffect(() => {
+  //   fetch('http://10.58.0.113:8000/word/list')
+  //     .then((res)=> res.json())
+  //     .then((res) => {
+  //       setMainWord(res.word_list)
+  //     });
+  // },[])
+  //
+
   useEffect(() => {
-    fetch('http://10.58.3.83:8000/word/list')
+    fetch('mainWordList.json')
       .then((res)=> res.json())
       .then((res) => {
         setMainWord(res.word_list)
       });
   },[])
-
-
+  
+  
+  
   // const searchWords = () => {
   //   fetch('searchMock.json')
   //     .then(res => res.json())
@@ -63,17 +74,19 @@ const Main = () => {
 
   
   
-  
   return (
     <div className="Main">
+      
+      <Link to="/register"><button className="regi">
+        <GrEdit/>
+      </button></Link>
       <header>
         <div className="nav_top_wrapper">
       		<ul className="nav_top">
       			<li>안녕하세요</li>
-      			<li className="user_name">뉴피디아 님</li>
-      			<li><img src={MyPage} alt="mypage_Icon" /></li>
+      			<li className="user_name"></li>
+            <Link to="/mypage"><li><img src={MyPage} alt="mypage_Icon" /></li></Link>
             <li><LoginModal/></li>
-            <li><NickNameModal/></li>
       		</ul>
         </div>
         <div className="nav_bottom">
@@ -91,9 +104,7 @@ const Main = () => {
         </div>
       </header>
       <section className="main_top_wrap">
-        
         <div className="main_top">
-          
           <img src={YellowDot} className="dot_small" />
           <img src={YellowDot} className="dot_large" />
           <div className="narr">
@@ -105,7 +116,7 @@ const Main = () => {
               <div className="SearchResult" style ={{display: searchData ? "block" : "none" }}>
                 {searchData && searchData.map((data,index) =>
                   <div className="result" key={index} data={data} index={index} >
-                    <p>{data && data.word_name}</p>
+                    <Link exact to="/worddetail/:id"><p>{data && data.word_name}</p></Link>
                     <span>{data && " - " + descriptionCut(data)}</span>
                   </div>)}
               </div>
@@ -134,7 +145,7 @@ const Main = () => {
             </p> 
           </div>
           <div className="card_list">
-            {mainWord && mainWord.map((data,index)=> <MainCard data={data} index={index} /> )}
+            {mainWord && mainWord.map((data,index)=> <MainCard data={data} index={index} key={index} /> )}
           </div>
         </main>
       </section>
