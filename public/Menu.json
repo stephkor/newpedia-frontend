@@ -1,0 +1,24 @@
+{
+  "menu_list": [
+    {
+      "menu_id": 1,
+      "menu_name": "최신순"
+    },
+    {
+      "menu_id": 2,
+      "menu_name": "인기순"
+    },
+    {
+      "menu_id": 3,
+      "menu_name": "글자별"
+    },
+    {
+      "menu_id": 4,
+      "menu_name": "주제별"
+    },
+    {
+      "menu_id": 5,
+      "menu_name": "테스트"
+    }
+  ]
+}

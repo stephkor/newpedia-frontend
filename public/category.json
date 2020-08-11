@@ -1,0 +1,56 @@
+{
+  "category_list": [
+    {
+      "category_id": 16,
+      "category_name": "교육"
+    },
+    {
+      "category_id": 17,
+      "category_name": "게임"
+    },
+    {
+      "category_id": 18,
+      "category_name": "커뮤니티"
+    },
+    {
+      "category_id": 19,
+      "category_name": "방송"
+    },
+    {
+      "category_id": 20,
+      "category_name": "음식"
+    },
+    {
+      "category_id": 21,
+      "category_name": "음악"
+    },
+    {
+      "category_id": 22,
+      "category_name": "스포츠"
+    },
+    {
+      "category_id": 23,
+      "category_name": "종교"
+    },
+    {
+      "category_id": 24,
+      "category_name": "경제"
+    },
+    {
+      "category_id": 25,
+      "category_name": "국가"
+    },
+    {
+      "category_id": 26,
+      "category_name": "과학기술"
+    },
+    {
+      "category_id": 27,
+      "category_name": "직업"
+    },
+    {
+      "category_id": 28,
+      "category_name": "문화"
+    }
+  ]
+}

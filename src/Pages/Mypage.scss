@@ -1,0 +1,179 @@
+.Mypage{
+  width: 100%;
+  height: 100vh;
+  header {
+    max-width: 1280px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 0 0 20px;
+    border-bottom: 2px solid #e8e8e8;
+
+    .nav_top_wrapper {
+      width: 100%;
+      display: flex;
+      margin: 0 auto;
+      justify-content: flex-end;
+      .nav_top {
+        li {
+          display: inline-block;
+          padding-left: 25px;
+          font-family: AppleSDGothicNeo;
+          font-size: 18.5px;
+          font-weight: 300;
+
+          img{
+            width: 45px;
+          }
+        }
+      }
+    }
+
+    .nav_bottom {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 auto;
+      padding-top: 20px;
+      .logo {
+        width: 165px;
+        height: 20px;
+
+        p {
+          font-family: Arial;
+          font-size: 28px;
+          font-weight: 900;
+        }
+      }
+      .nav_menu {
+        li {
+          display: inline-block;
+          font-family: AppleSDGothicNeo;
+          font-size: 19.5px;
+          font-weight: 600;
+          color: #474747;
+          text-align: left;
+          vertical-align: middle;
+          padding: 0 10px;
+        }
+      }
+    }
+  }
+
+  section{
+    max-width: 1280px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 auto;
+
+    aside {
+     width: 20%;
+      padding: 5%;
+
+      ul{
+
+        li{
+         font-size: 24px;
+        }
+      }
+    }
+
+    main {
+      width: 70%;
+      border-left: 2px solid #e8e8e8;
+      margin: 5% auto;
+      padding : 10%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: stretch;
+
+      h1{
+        font-family: AppleSDGothicNeo;
+        font-size: 48.5px;
+        font-weight: 800;
+        text-align: left;
+        color: #000000;
+        padding : 15px 15px 30px;
+      }
+      .edit_nickname {
+        h2 {
+          padding : 5% ;
+          font-size: 28px;
+          font-weight: 700;
+          line-height: 1.51;
+          margin: 3%;
+        }
+        p {
+          width: 150%;
+          padding: 5%;
+          margin: 3%;
+          font-size: 24px;
+          font-weight: 400;
+          border-bottom: 2px solid #e8e8e8e8;
+        }
+        input {
+          margin: 3%;
+          width: 150%;
+          padding: 5%;
+          height: 5%;
+          border-bottom: 2px solid #e8e8e8e8;
+          font-size: 24px;
+          font-weight: 400;
+          border-bottom: 2px solid #e8e8e8e8;
+        }
+        input::placeholder {
+          font-size: 24px;
+          font-weight: 400;
+        }
+      }
+      button {
+        width: 30%;
+        padding: 3% 10%;
+        font-size: 24px;
+        font-weight: 600;
+        margin: 10%;
+        background-color: yellow;
+      }
+    }
+  }
+
+
+  footer {
+    max-width: 100%;
+    padding: 3%;
+    color: white;
+    background: black;
+
+
+    .logo {
+      padding: 0 8%;
+
+      p {
+        font-family: Arial;
+        font-size: 28px;
+        font-weight: 900;
+      }
+    }
+
+    .info {
+      padding: 3% 8%;
+
+      p {
+        font-family: AppleSDGothicNeo;
+        font-size: 23px;
+        font-weight: 8000;
+        padding-bottom: 15px;
+      }
+
+      span {
+        font-family: AppleSDGothicNeo;
+        font-size: 21.5px;
+        font-weight: 200;
+      }
+    }
+  }
+
+}

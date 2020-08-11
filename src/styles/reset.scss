@@ -125,6 +125,11 @@ html {
  * Address `outline` inconsistency between Chrome and other browsers.
  */
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 a:focus {
   outline: thin dotted;
 }
@@ -355,6 +360,13 @@ fieldset {
 textarea {
   resize: vertical;
 }
+
+Link {
+  text-decoration: none;
+  color: black;
+
+}
+
 
 .chromeframe {
   margin: 0.2em 0;

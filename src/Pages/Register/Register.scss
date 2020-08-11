@@ -55,10 +55,10 @@
 			justify-content: center;
 			flex-direction: column;
 			margin: auto;
-			padding: 18.2%;
+			padding: 10% 18.2%;
 			div {
 				width: 100%;
-				padding: 6.5% 0;
+				padding: 6% 0;
 				h1 {
 					font-family: AppleSDGothicNeo;
 					font-size: 37.5px;
@@ -128,6 +128,79 @@
 						}
 					}
 				}
+			}
+		}
+
+		.register {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			margin: 5%;
+			p {
+				font-family: AppleSDGothicNeo;
+				font-size: 37.5px;
+				font-weight: 500;
+
+			}
+			span {
+				font-size: 29.5px;
+				font-weight: 300;
+				line-height: 1.51;
+			}
+
+			div {
+				width: 45%;
+				.reg_btn {
+					width: 40%;
+					padding: 5%;
+					background-color: black;
+					color: white;
+					margin-right: 30px;
+					display: inline-block;
+				}
+
+				.reg_cancel_btn {
+					width: 40%;
+					padding: 5%;
+					background-color: yellow;
+					color: black;
+					display: inline-block;
+				}
+			}
+		}
+	}
+	footer {
+		max-width: 100%;
+		padding: 3%;
+		color: white;
+		background: black;
+
+
+		.logo {
+			padding: 0 8%;
+
+			p {
+				font-family: Arial;
+				font-size: 28px;
+				font-weight: 900;
+			}
+		}
+
+		.info {
+			padding: 3% 8%;
+
+			p {
+				font-family: AppleSDGothicNeo;
+				font-size: 23px;
+				font-weight: 8000;
+				padding-bottom: 15px;
+			}
+
+			span {
+				font-family: AppleSDGothicNeo;
+				font-size: 21.5px;
+				font-weight: 200;
 			}
 		}
 	}
