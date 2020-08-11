@@ -1,10 +1,28 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import "styles/reset.scss";
 import "styles/common.scss";
 import "./Register.scss"
 
 
 const Register = () => {
+  const [nickname, setNickname] = useState("");
+  const [category, setCategory] = useState([]);
+  
+  useEffect(()=>{
+    fetch('10.58.0.113:8000/account/nickname', {
+    headers: {Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.Sj80GQrZjMkZQ7ofkOTWpkFd1W9W5B9Is9WezpY6d_c'}
+  })
+.then((res)=> res.json())
+    .then((res) => setNickname(res.nickname));
+})
+  
+  useEffect(()=>{
+    fetch('10.58.0.113:8000/word/category?menu_id=1')
+      .then((res)=> res.json())
+      .then((res) => setCategory(res.category_list))
+      .then((res)=> console.log(res))
+  })
+  ;
   
   return (
     <div className="Register">
@@ -60,11 +78,25 @@ const Register = () => {
         
           <div className="register">
             <p>다음과 같이 등록하시겠습니까?</p>
-            <span></span>
+            <span>[{nickname}] 의 이름으로 등록됩니다</span>
+            <div>
+              <button className="reg_btn">등록취소</button>
+              <button className="reg_cancel_btn">등록완료</button>
+            </div>
           </div>
       </section>
-    
+  
+      <footer>
+        <div className="logo">
+          <p>NEWPEDIA</p>
+        </div>
+        <div className="info">
+          <p>stephkor@icloud.com</p>
+          <span>오류나 기타 건의사항은 메일로 보내주세요!</span>
+        </div>
+      </footer>
     </div>
+    
   )
 }
 

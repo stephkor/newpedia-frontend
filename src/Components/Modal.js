@@ -37,6 +37,9 @@ class LoginModal extends React.Component {
       data: res,
       login: "로그아웃"
     });
+    
+    
+    
 
     fetch('http://10.58.3.83:8000/account/sign-in/kakao', {
       //백엔드에서 원하는 형태의 endpoint로 입력해서 fetch한다. 
@@ -55,17 +58,8 @@ class LoginModal extends React.Component {
             //절차가 있으므로 까먹지 말 것!
   };
 
- responseGoogle = (res) => {
-   const {googleData} = this.state;
-
-   this.setState({
-     googleData: res,
-   })
-   
- }
 
   render () {
-   console.log(this.state.data)
   return (
     <>
     <LoginButton type="button" onClick={()=>this.handleOpen()}>
@@ -89,17 +83,6 @@ class LoginModal extends React.Component {
               onSuccess={(res)=>this.responseKaKao(res)}
               getProfile={true} />
             </button>
-
-            <GoogleLogin
-            clientId="88627608200-djjdb4j25495k31susiojh2tjd3gv6qe.apps.googleusercontent.com"
-            buttonText="Login"
-            onSuccess={this.responseGoogle}
-            onFailure={this.responseGoogle}
-            cookiePolicy={'single_host_origin'}
-            render={renderProps => (
-              <button onClick={renderProps.onClick} disabled={renderProps.disabled}><img className="google" src={google} alt="kakao"/></button>
-            )}
-            />
         </div>
       </ModalBody>
   </Modal>

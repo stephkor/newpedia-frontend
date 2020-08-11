@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Main from "Pages/Main/Main";
 import Register from "Pages/Register/Register";
+import NickNameModal from "Components/NickName";
 
 class Routes extends React.Component {
   render() {

@@ -7,6 +7,7 @@ import MyPage from "./my_ico.png"
 import Bird from'./bird.png'
 import Background from "./background.png"
 import YellowDot from "./yellowdot.png"
+import NickNameModal from "Components/NickName";
 import "./Main.scss";
 
 
@@ -72,6 +73,7 @@ const Main = () => {
       			<li className="user_name">뉴피디아 님</li>
       			<li><img src={MyPage} alt="mypage_Icon" /></li>
             <li><LoginModal/></li>
+            <li><NickNameModal/></li>
       		</ul>
         </div>
         <div className="nav_bottom">
