@@ -16,8 +16,8 @@ const   Register  = () => {
   const [wordExample, setWordExample] = useState("");
 
   useEffect(()=>{
-    fetch('http://10.58.0.113:8000/account/nickname', {
-    headers: {Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.Sj80GQrZjMkZQ7ofkOTWpkFd1W9W5B9Is9WezpY6d_c'}
+    fetch('http://10.58.4.149:8000/account/nickname', {
+    headers: {Authorization: localStorage.getItem('token')}
   })
 .then((res)=> res.json())
     .then((res) => setNickname(res.nickname));
@@ -27,14 +27,15 @@ const   Register  = () => {
   
 
   useEffect(()=>{
-    fetch('http://10.58.0.113:8000/word/category?menu_id=4')
+    fetch('http://10.58.4.149:8000/word/category?menu_id=4')
       .then((res)=> res.json())
       .then((res) => setCategory(res.category_list))
   },[])
 
   const onCategoryClick = (e) => {
     setChecked(!checked);
-    setClickCategory(e.target.value);
+    if (checked) {clickCategory.concat(e.target.value)}
+    
   }
   
   const isWordName = (e) => {
@@ -48,20 +49,22 @@ const   Register  = () => {
   const isWordExample = (e) => {
     setWordExample(e.target.value)
   }
-  
+
+  console.log(clickCategory)
   
   const registerWord = () => {
-    fetch('http://10.58.0.113:8000/word/new', {
+    fetch('http://10.58.4.149:8000/word/new', {
       method: 'POST',
       headers: {Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.Sj80GQrZjMkZQ7ofkOTWpkFd1W9W5B9Is9WezpY6d_c'},
-      body: {
+      body: JSON.stringify({
         "name" : wordName,
         "description" : wordDescription,
         "example" : wordExample,
-      }
+        "category" : clickCategory
+      })
     }
   )
-      .then(window.location.href('http://localhost:3000'))
+      .then(window.location.href='http://localhost:3000')
   }
   
   

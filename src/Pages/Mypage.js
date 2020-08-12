@@ -1,41 +1,58 @@
 import React, { useState, useEffect } from 'react';
 import LoginModal from "Components/Modal";
 import './Mypage.scss'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import MyPage from "../Pages/Main/my_ico.png"
 
 const Mypage = () => {
 	const [nickName, setNickname] = useState("")
 	const [newNickname, setNewNickname] = useState("");
+	const [redirect, setRedirect] = useState(false);
 	
-	// useEffect = (() => {
-	// 	fetch('localhost:8000/account/nickname', {
-	// 		headers: {Authorization : localStorage.getItem('token')}
-	// 	})
-	// 		.then((res)=> res.json())
-	// 		.then(res => setNickname(res.nickname))
-	//  })
-	
-
-	useEffect(() => {
-		fetch(`nickname.json`)
+	useEffect (() => {
+		fetch('http://10.58.4.149:8000/account/nickname', {
+			headers: {'Authorization' : localStorage.getItem('token')}
+		})
 			.then((res)=> res.json())
-			.then((res) => {
-				setNickname(res.nickname)
-			});
-	},[])
+			.then(res => setNickname(res.nickname))
+	 },[])
+	
+	
+	//
+	// useEffect(() => {
+	// 	fetch(`http://10.58.4.149:8000/account/nickname`)
+	// 		.then((res)=> res.json())
+	// 		.then((res) => {
+	// 			setNickname(res.nickname)
+	// 		});
+	// },[])
 	
 	const newnickname = (e) => {
 		setNewNickname(e.target.value)
 	}
 	
-	const editNickname = () => {
-		fetch('http://localhost:8000/account/nickname', {
-			method: 'POST',
-			body: {
-				"nickname" : nickName}
-		})
+	const toMain = () => {
+		window.location.replace('/')
 	}
+	
+	const editNickname = () => {
+		let home = 'http://localhost:3000/';
+		let mypage = "http://localhost:3000/mypage"
+		fetch('http://10.58.4.149:8000/account/nickname', {
+			method: 'POST',
+			headers : {'Authorization' : localStorage.getItem('token')},
+			body: JSON.stringify({"nickname" : newNickname})
+	})
+			.then((res)=>
+			{if (res.status === 200) {
+				alert('닉네임이 성공적으로 변경되었습니다.')
+				toMain();
+			}
+				else if (res.status === 401) {
+					alert('실패')
+				}
+	})
+}
 	
 	
 	return (

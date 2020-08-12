@@ -15,7 +15,8 @@ class LoginModal extends React.Component {
       open: false,
       data: 'kakao',
       token: "",
-      
+      nickname: "",
+      nicknamemodal : <NickNameModal/>
     }
   }
 
@@ -37,41 +38,38 @@ class LoginModal extends React.Component {
       data: res,
       token: res.access_token
     });
-    fetch('http://10.58.3.83:8000/account/sign-in/kakao', {
+    fetch('http://10.58.4.149:8000/account/sign-in/kakao', {
       //백엔드에서 원하는 형태의 endpoint로 입력해서 fetch한다. 
       method: 'POST',
       headers: {
         Authorization: res.response.access_token,
         //받아오는 response객체의 access_token을 통해 유저 정보를 authorize한다. 
       },
-    })
+    },[])
       .then((res) => res.json())
       .then((res) => localStorage.setItem('token', res.access_token))
+      // .then((res)=>  { if ( res && res.nickname === ""){return this.state.nicknamemodal}
+      // else {this.handleClose()}} )
       //백엔드에서 요구하는 key 값(token)으로 저장해서 localStorage에 저장한다.
       //여기서 중요한것은 처음에 console.log(res)해서 들어오는
       //access_token 값을 백엔드에 전달해줘서 백엔드에 저장 해두는
       //절차가 있으므로 까먹지 말 것!
-      .then((res) => {
-        if (res.satus === 200 && res.nickname) {
-          return this.handleClose()
-        } else if (res.status === 200 && res.nickcname === undefined) {
-           return <NickNameModal/>
-        }
-      })
   };
   
  Logout = () => {
     localStorage.removeItem('token');
     this.setState({
-        token: ""
+        token: "",
+        nickname: "",
       }
     )
   }
+  
+  
 
  
 
   render () {
-   console.log(localStorage.getItem('token'))
   return (
     <>
     <LoginButton type="button" onClick={()=>this.handleOpen()} style={{display: localStorage.getItem('token') === null ? "block" : "none"}}>로그인</LoginButton>

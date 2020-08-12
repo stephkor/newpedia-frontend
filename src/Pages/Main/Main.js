@@ -1,5 +1,4 @@
 import React, {useState, useEffect}  from 'react';
-<<<<<<< HEAD
 import {GrEdit} from "react-icons/gr"
 import {Link} from "react-router-dom"
 import LoginModal from "Components/Modal";
@@ -9,56 +8,60 @@ import MyPage from "./my_ico.png"
 import Bird from'./bird.png'
 import Background from "./background.png"
 import YellowDot from "./yellowdot.png"
-import LoginModal from "Components/Modal";
-import MainSlider from "Components/MainSlider";
-import MainCard from "./MainCard";
 import "./Main.scss";
 
 
 
 
 const Main = () => {
+  const [page, setPage] = useState(1);
+  const [nickname, setNickname] = useState("");
   const [search, setSearch] = useState("")
   const [mainWord, setMainWord] = useState([]);
+  const [prevWord, setPrevWord] = useState([]);
   const [searchData, setSearchData] = useState([]);
-
- 
+  const [wordList, setWordList] = useState([]);
   
   
-  const handleSearch = (e) => {
-    setSearch(e.target.value)
+  
+  useEffect(() => {
+    fetch(`http://10.58.4.149:8000/word/list?page=${page}`)
+      .then((res) => res.json())
+      .then((res) => {
+        setPrevWord(res.word_list)
+      })
+  },[])
+  
+ const clickMore = () => {
+    setPage(page + 1)
+    fetch(`http://10.58.4.149:8000/word/list?page=${page}`)
+      .then((res) => res.json())
+      .then((res) => {
+        setWordList(res.word_list)
+        setPrevWord(prevWord.concat(wordList))
+      })
   }
-  
 
+  useEffect (() => {
+    fetch('http://10.58.4.149:8000/account/nickname', {
+      headers: {'Authorization' : localStorage.getItem('token')}
+    })
+      .then((res)=> res.json())
+      .then(res => setNickname(res.nickname))
+  },[])
+
+
+  //
   // useEffect(() => {
-  //   fetch('http://10.58.0.113:8000/word/list')
+  //   fetch('http://10.58.3.54:8000/word/main-list')
+  //
   //     .then((res)=> res.json())
   //     .then((res) => {
   //       setMainWord(res.word_list)
   //     });
   // },[])
   //
-
-  useEffect(() => {
-    fetch('http://10.58.3.54:8000/word/main-list')
-
-      .then((res)=> res.json())
-      .then((res) => {
-        setMainWord(res.word_list)
-      });
-  },[])
-  
- const searchWords = (url, data) => {
-    fetch('http://10.58.3.54:8000/search/list', {
-    method: 'POST',
-      headers: {'Content-Type' : 'application/json'},
-      body: JSON.stringify({"search_word" : search})
-  })
-  .then(res => res.json())
-  }
-  
-  
-  
+  //
   
   
   // const searchWords = () => {
@@ -77,32 +80,29 @@ const Main = () => {
     }
     return result;
   }
-
-
+  
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
+  }
+  
   const searchWords = () => {
-    fetch('http://10.58.0.113:8000/search/list', {
-    method: 'POST',
-      headers: {'Content-Type' : 'application/json'},
-      body: JSON.stringify({"search_word" : search})
-  })
+    fetch(`http://10.58.4.149:8000/word/list/search?search_word=${search}`)
       .then(res => res.json())
       .then (res => {setSearchData(res.search_list)})
   }
-
-  
   
   return (
     <div className="Main">
       
-      <Link to="/register"><button className="regi">
+      <Link exact to="/register"><button className="regi">
         <GrEdit/>
       </button></Link>
       <header>
         <div className="nav_top_wrapper">
       		<ul className="nav_top">
       			<li>안녕하세요</li>
-      			<li className="user_name"></li>
-            <Link to="/mypage"><li><img src={MyPage} alt="mypage_Icon" /></li></Link>
+      			<li className="user_name">{nickname} 님</li>
+            <Link exact to="/mypage"><li><img src={MyPage} alt="mypage_Icon" /></li></Link>
             <li><LoginModal/></li>
       		</ul>
         </div>
@@ -129,11 +129,11 @@ const Main = () => {
             <h1><span>오늘의 신조어</span>를 확인하세요.</h1>
           </div>  
           <div className="search">
-            <input placeholder="단어를 검색해보세요" onChange={(e)=>handleSearch(e)} onKeyUp={(e)=>searchWords(e)} />
+            <input placeholder="단어를 검색해보세요" onChange={(e)=>handleSearch(e)} onKeyUp={searchWords}/>
               <div className="SearchResult" style ={{display: searchData ? "block" : "none" }}>
                 {searchData && searchData.map((data,index) =>
                   <div className="result" key={index} data={data} index={index} >
-                    <Link exact to="/worddetail/:id"><p>{data && data.word_name}</p></Link>
+                    <Link to="/worddetail/:id"><p>{data && data.word_name}</p></Link>
                     <span>{data && " - " + descriptionCut(data)}</span>
                   </div>)}
               </div>
@@ -162,9 +162,10 @@ const Main = () => {
             </p> 
           </div>
           <div className="card_list">
-            {mainWord && mainWord.map((data,index)=> <MainCard data={data} index={index} key={index} /> )}
+            {prevWord && prevWord.map((data,index)=> <MainCard data={data} index={index} key={index} /> )}
           </div>
         </main>
+        <button className="showmore" onClick={()=>clickMore()}>더보기</button>
       </section>
 
 

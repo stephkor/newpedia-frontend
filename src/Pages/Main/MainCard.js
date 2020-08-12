@@ -1,20 +1,17 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-
 import {Link} from "react-router-dom"
 import likeImg from './like.png'
 import dislikeImg from './dislike.png'
 
 
-
-
-const MainCard = ({data, index}) => {
+const MainCard = ({data, index, match}) => {
   const [like, setLike] = useState(data.word_like);
   const [dislike, setDislike] = useState(data.word_dislike);
   const [click, setClick] = useState(true);
   const [category, setCategory] = useState(data.word_category);
   
-
+let id = data.word_id;
  // const onLike = () => {
  //  fetch(`http://10.58.0.113:8000/word/${data.word_id}/like`, {
  //      method: 'POST',
@@ -57,7 +54,7 @@ const MainCard = ({data, index}) => {
   return (
     <div className="MainCard" key={index}>
       <div className="card">
-        <Link exact to="/worddetail/:word_id"><h1>{data && data.word_name}</h1></Link>
+        <Link exact to="/worddetail/:id"><h1>{data && data.word_name}</h1></Link>
         <p>{data && data.word_description}</p>
         <span>{data && data.word_example}</span>
         <h4>{category.toString()}</h4>

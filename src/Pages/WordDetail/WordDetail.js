@@ -8,8 +8,8 @@ import YellowDot from "../Main/yellowdot.png"
 import './WordDetail.scss';
 
 
-const WordDetail = ({data, index}) => {
-	const [search, setSearch] = useState("")
+const WordDetail = (match) => {
+	const [search, setSearch] = useState("");
 	const [searchData, setSearchData] = useState([]);
 	const [detail, setDetail] = useState([]);
 	const [like, setLike] = useState(0);
@@ -17,20 +17,20 @@ const WordDetail = ({data, index}) => {
 	const [category, setCategory] = useState([])
 
 	
-// 	useEffect(()=>{
-// 		fetch(`localhost:8000/word/${word_id}`)
-// 			.then((res)=> res.json())
-// 			.then(setDetail(res.word_info))
-// 	}
-// )
-	
 	useEffect(()=>{
-			fetch(`wordDetail.json`)
-				.then((res)=> res.json())
-				.then((res)=>setDetail(res.word_info))
-				.then((res)=>setCategory(res.word_info.category))
-		}
-	)
+		let id = match.params;
+		fetch(`http://10.58.4.149:8000/word/1`)
+			.then((res)=> res.json())
+			.then((res)=> setDetail(res.word_info))
+	},[])
+	
+	// useEffect(()=>{
+	// 		fetch(`wordDetail.json`)
+	// 			.then((res)=> res.json())
+	// 			.then((res)=>setDetail(res.word_info))
+	// 			.then((res)=>setCategory(res.word_info.category))
+	// 	}
+	// )
 	
 	const handleSearch = (e) => {
 		setSearch(e.target.value)
