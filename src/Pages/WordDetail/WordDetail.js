@@ -19,7 +19,7 @@ const WordDetail = (match) => {
 	
 	useEffect(()=>{
 		let id = match.params;
-		fetch(`http://10.58.4.149:8000/word/1`)
+		fetch(`http://10.58.2.97:8000/word/1`)
 			.then((res)=> res.json())
 			.then((res)=> setDetail(res.word_info))
 	},[])

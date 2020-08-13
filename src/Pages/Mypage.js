@@ -10,7 +10,7 @@ const Mypage = () => {
 	const [redirect, setRedirect] = useState(false);
 	
 	useEffect (() => {
-		fetch('http://10.58.4.149:8000/account/nickname', {
+		fetch('http://10.58.2.97:8000/account/nickname', {
 			headers: {'Authorization' : localStorage.getItem('token')}
 		})
 			.then((res)=> res.json())
@@ -38,7 +38,7 @@ const Mypage = () => {
 	const editNickname = () => {
 		let home = 'http://localhost:3000/';
 		let mypage = "http://localhost:3000/mypage"
-		fetch('http://10.58.4.149:8000/account/nickname', {
+		fetch('http://10.58.2.97:8000/account/nickname', {
 			method: 'POST',
 			headers : {'Authorization' : localStorage.getItem('token')},
 			body: JSON.stringify({"nickname" : newNickname})

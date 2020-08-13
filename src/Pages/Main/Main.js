@@ -22,10 +22,11 @@ const Main = () => {
   const [searchData, setSearchData] = useState([]);
   const [wordList, setWordList] = useState([]);
   
+  document.cookie = 'cookie2=value2; SameSite=None; Secure';
   
   
   useEffect(() => {
-    fetch(`http://10.58.4.149:8000/word/list?page=${page}`)
+    fetch(`http://10.58.2.97:8000/word/list?page=${page}`)
       .then((res) => res.json())
       .then((res) => {
         setPrevWord(res.word_list)
@@ -34,7 +35,7 @@ const Main = () => {
   
  const clickMore = () => {
     setPage(page + 1)
-    fetch(`http://10.58.4.149:8000/word/list?page=${page}`)
+    fetch(`http://10.58.2.97:8000/word/list?page=${page}`)
       .then((res) => res.json())
       .then((res) => {
         setWordList(res.word_list)
@@ -43,7 +44,7 @@ const Main = () => {
   }
 
   useEffect (() => {
-    fetch('http://10.58.4.149:8000/account/nickname', {
+    fetch('10.58.2.97:8000/account/nickname', {
       headers: {'Authorization' : localStorage.getItem('token')}
     })
       .then((res)=> res.json())
@@ -86,7 +87,7 @@ const Main = () => {
   }
   
   const searchWords = () => {
-    fetch(`http://10.58.4.149:8000/word/list/search?search_word=${search}`)
+    fetch(`http://10.58.2.97:8000/word/list/search?search_word=${search}`)
       .then(res => res.json())
       .then (res => {setSearchData(res.search_list)})
   }
