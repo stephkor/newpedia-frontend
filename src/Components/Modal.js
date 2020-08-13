@@ -35,7 +35,6 @@ class LoginModal extends React.Component {
 
   responseKaKao = (res) => {
     document.cookie = 'cookie2=value2; SameSite=None; Secure';
-    console.log(res)
     const {data} = this.state;
     this.setState({
       data: res,
@@ -51,11 +50,11 @@ class LoginModal extends React.Component {
     },[])
       .then((res) => res.json())
       .then((res) => localStorage.setItem('token', res.access_token))
-      .then((res)=>  {this.handleClose()})
+      .then((res)=>  {this.handleClose()}
       //백엔드에서 요구하는 key 값(token)으로 저장해서 localStorage에 저장한다.
       //여기서 중요한것은 처음에 console.log(res)해서 들어오는
       //access_token 값을 백엔드에 전달해줘서 백엔드에 저장 해두는
-      //절차가 있으므로 까먹지 말 것!
+)
   };
   
  Logout = () => {
@@ -70,19 +69,16 @@ class LoginModal extends React.Component {
      .then(this.setState({
         token: "",
         nickname: "",
-      }
-    )
+      })
      )
- 
   }
-
 
 
   
   render () {
+   console.log(localStorage.getItem('token'))
   return (
     <>
-  
       <LoginButton type="button" onClick={()=>this.handleOpen()}
       style={{display: localStorage.getItem('token') === null ? "block" : "none"}}>로그인</LoginButton>
     <LogoutButton type="button" onClick={()=>this.Logout()}

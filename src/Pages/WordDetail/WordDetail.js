@@ -31,6 +31,8 @@ const WordDetail = (match) => {
 	// 			.then((res)=>setCategory(res.word_info.category))
 	// 	}
 	// )
+
+
 	
 	const handleSearch = (e) => {
 		setSearch(e.target.value)

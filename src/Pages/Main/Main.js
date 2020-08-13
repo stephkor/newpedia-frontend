@@ -24,7 +24,16 @@ const Main = () => {
   
   document.cookie = 'cookie2=value2; SameSite=None; Secure';
   
-  
+
+  // useEffect(() => {
+  //   fetch('http://10.58.0.113:8000/word/list')
+  //     .then((res)=> res.json())
+  //     .then((res) => {
+  //       setMainWord(res.word_list)
+  //     });
+  // },[])
+  //
+
   useEffect(() => {
     fetch(`http://10.58.2.97:8000/word/list?page=${page}`)
       .then((res) => res.json())
@@ -51,25 +60,6 @@ const Main = () => {
       .then(res => setNickname(res.nickname))
   },[])
 
-
-  //
-  // useEffect(() => {
-  //   fetch('http://10.58.3.54:8000/word/main-list')
-  //
-  //     .then((res)=> res.json())
-  //     .then((res) => {
-  //       setMainWord(res.word_list)
-  //     });
-  // },[])
-  //
-  //
-  
-  
-  // const searchWords = () => {
-  //   fetch('searchMock.json')
-  //     .then(res => res.json())
-  //     .then ((res) => {setSearchData(res.search_word_list)})
-  // }
   
   
   const descriptionCut = (data) => {
@@ -81,6 +71,7 @@ const Main = () => {
     }
     return result;
   }
+
   
   const handleSearch = (e) => {
     setSearch(e.target.value)
@@ -91,10 +82,10 @@ const Main = () => {
       .then(res => res.json())
       .then (res => {setSearchData(res.search_list)})
   }
+
   
   return (
     <div className="Main">
-      
       <Link exact to="/register"><button className="regi">
         <GrEdit/>
       </button></Link>
@@ -102,7 +93,7 @@ const Main = () => {
         <div className="nav_top_wrapper">
       		<ul className="nav_top">
       			<li>안녕하세요</li>
-      			<li className="user_name">{nickname} 님</li>
+      			<li className="user_name">{nickname}</li>
             <Link exact to="/mypage"><li><img src={MyPage} alt="mypage_Icon" /></li></Link>
             <li><LoginModal/></li>
       		</ul>
@@ -134,7 +125,7 @@ const Main = () => {
               <div className="SearchResult" style ={{display: searchData ? "block" : "none" }}>
                 {searchData && searchData.map((data,index) =>
                   <div className="result" key={index} data={data} index={index} >
-                    <Link to="/worddetail/:id"><p>{data && data.word_name}</p></Link>
+                    {data && data.word_name}</p>
                     <span>{data && " - " + descriptionCut(data)}</span>
                   </div>)}
               </div>

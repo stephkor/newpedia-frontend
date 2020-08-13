@@ -10,10 +10,17 @@ class Routes extends React.Component {
     return (
       <Router>
         <Switch>
+<<<<<<< HEAD
           <Route  exact path="/" component={Main} />
           <Route  exact path="/register" component={Register} />
           <Route  exact path="/mypage" component={Mypage} />
           <Route exact path="/worddetail/:word_id" component={WordDetail} />
+=======
+          <Route exact path="/" component={Main} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/mypage" component={Mypage} />
+          <Route path="/worddetail/:word_id" component={WordDetail} />
+>>>>>>> master
         </Switch>
       </Router>
     );

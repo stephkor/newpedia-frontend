@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import LoginModal from "Components/Modal";
 import './Mypage.scss'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import MyPage from "../Pages/Main/my_ico.png"
 
 const Mypage = () => {
 	const [nickName, setNickname] = useState("")
 	const [newNickname, setNewNickname] = useState("");
-	const [redirect, setRedirect] = useState(false);
 	
 	useEffect (() => {
 		fetch('http://10.58.2.97:8000/account/nickname', {
@@ -18,14 +17,17 @@ const Mypage = () => {
 	 },[])
 	
 	
-	//
-	// useEffect(() => {
-	// 	fetch(`http://10.58.4.149:8000/account/nickname`)
-	// 		.then((res)=> res.json())
-	// 		.then((res) => {
-	// 			setNickname(res.nickname)
-	// 		});
-	// },[])
+
+	
+
+	useEffect(() => {
+		fetch(`nickname.json`)
+			.then((res)=> res.json())
+			.then((res) => {
+				setNickname(res.nickname)
+			});
+	},[])
+
 	
 	const newnickname = (e) => {
 		setNewNickname(e.target.value)
@@ -49,10 +51,11 @@ const Mypage = () => {
 				toMain();
 			}
 				else if (res.status === 401) {
-					alert('실패')
+					alert('닉네임은 한글, 1~12 글자로 작성 해주세요')
 				}
 	})
 }
+
 	
 	
 	return (

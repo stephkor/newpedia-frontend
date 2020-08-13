@@ -27,6 +27,7 @@ const  MainSlider = () => {
       }
       return result;
     }
+
     var settings = {
       dots: false,
       infinite: true,

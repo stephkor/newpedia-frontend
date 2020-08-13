@@ -5,56 +5,39 @@ import likeImg from './like.png'
 import dislikeImg from './dislike.png'
 
 
-const MainCard = ({data, index, match}) => {
+const MainCard = ({data, index}) => {
+
   const [like, setLike] = useState(data.word_like);
   const [dislike, setDislike] = useState(data.word_dislike);
   const [click, setClick] = useState(true);
   const [category, setCategory] = useState(data.word_category);
   
-let id = data.word_id;
- // const onLike = () => {
- //  fetch(`http://10.58.0.113:8000/word/${data.word_id}/like`, {
- //      method: 'POST',
- //    headers: { Authorization : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.Sj80GQrZjMkZQ7ofkOTWpkFd1W9W5B9Is9WezpY6d_c'}
- //  })
- //    .then((res)=>res.json())
- //    .then((res)=> {
- //      setLike(res.word_like)}
- //      ,[])
- //  };
- //
- //  const onDisLike = () => {
- //    fetch(`http://10.58.0.113:8000/word/${data.word_id}/dislike`, {
- //      method: 'POST',
- //      headers: { Authorization : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.Sj80GQrZjMkZQ7ofkOTWpkFd1W9W5B9Is9WezpY6d_c'}
- //    })
- //      .then((res)=> {setDislike(res.word_dislike)
- //      });
- //  }
-  
-  const onLike = () => {
-    fetch('mainWordList.json')
-      .then((res)=> {
-        setLike(res.word_like)}
-      )
+ const onLike = () => {
+  fetch(`http://10.58.0.113:8000/word/${data.word_id}/like`, {
+      method: 'POST',
+    headers: { Authorization : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.Sj80GQrZjMkZQ7ofkOTWpkFd1W9W5B9Is9WezpY6d_c'}
+  })
+    .then((res)=>res.json())
+    .then((res)=> {
+      setLike(res.word_like)}
+      ,[])
   };
-  
+
   const onDisLike = () => {
-    fetch('mainWordList.json')
+    fetch(`http://10.58.0.113:8000/word/${data.word_id}/dislike`, {
+      method: 'POST',
+      headers: { Authorization : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.Sj80GQrZjMkZQ7ofkOTWpkFd1W9W5B9Is9WezpY6d_c'}
+    })
       .then((res)=> {setDislike(res.word_dislike)
       });
   }
   
-  const multipleCategories = (category) => {
-    return  setCategory(data.word_category.split(','))
-  }
 
-  
   
   return (
     <div className="MainCard" key={index}>
       <div className="card">
-        <Link exact to="/worddetail/:id"><h1>{data && data.word_name}</h1></Link>
+        <h1>{data && data.word_name}</h1></Link>
         <p>{data && data.word_description}</p>
         <span>{data && data.word_example}</span>
         <h4>{category.toString()}</h4>

@@ -34,8 +34,7 @@ const   Register  = () => {
 
   const onCategoryClick = (e) => {
     setChecked(!checked);
-    if (checked) {clickCategory.concat(e.target.value)}
-    
+    setClickCategory(e.target.value);
   }
   
   const isWordName = (e) => {
@@ -50,12 +49,11 @@ const   Register  = () => {
     setWordExample(e.target.value)
   }
 
-  console.log(clickCategory)
   
   const registerWord = () => {
     fetch('http://10.58.2.97:8000/word/new', {
       method: 'POST',
-      headers: {Authorization: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.Sj80GQrZjMkZQ7ofkOTWpkFd1W9W5B9Is9WezpY6d_c'},
+      headers: {Authorization: localStorage.getItem('token')},
       body: JSON.stringify({
         "name" : wordName,
         "description" : wordDescription,
