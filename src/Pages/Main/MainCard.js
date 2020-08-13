@@ -37,7 +37,7 @@ const MainCard = ({data, index}) => {
   return (
     <div className="MainCard" key={index}>
       <div className="card">
-        <h1>{data && data.word_name}</h1></Link>
+        <h1>{data && data.word_name}</h1>
         <p>{data && data.word_description}</p>
         <span>{data && data.word_example}</span>
         <h4>{category.toString()}</h4>

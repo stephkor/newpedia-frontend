@@ -124,8 +124,8 @@ const Main = () => {
             <input placeholder="단어를 검색해보세요" onChange={(e)=>handleSearch(e)} onKeyUp={searchWords}/>
               <div className="SearchResult" style ={{display: searchData ? "block" : "none" }}>
                 {searchData && searchData.map((data,index) =>
-                  <div className="result" key={index} data={data} index={index} >
-                    {data && data.word_name}</p>
+                  <div className="result" key={index} data={data} index={index}>
+                    <p>{data && data.word_name}</p>
                     <span>{data && " - " + descriptionCut(data)}</span>
                   </div>)}
               </div>
