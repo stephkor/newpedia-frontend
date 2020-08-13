@@ -9,7 +9,7 @@ const Mypage = () => {
 	const [newNickname, setNewNickname] = useState("");
 	
 	useEffect (() => {
-		fetch('http://10.58.2.97:8000/account/nickname', {
+		fetch('http://3.34.131.76:8000/account/nickname', {
 			headers: {'Authorization' : localStorage.getItem('token')}
 		})
 			.then((res)=> res.json())

@@ -49,7 +49,7 @@ const WordDetail = (match) => {
 	
 	
 	const searchWords = () => {
-		fetch('http://10.58.0.113:8000/search/list', {
+		fetch('http://3.34.131.76:8000/search/list', {
 			method: 'POST',
 			headers: {'Content-Type' : 'application/json'},
 			body: JSON.stringify({"search_word" : search})

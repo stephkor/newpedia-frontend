@@ -13,7 +13,7 @@ const MainCard = ({data, index}) => {
   const [category, setCategory] = useState(data.word_category);
   
  const onLike = () => {
-  fetch(`http://10.58.0.113:8000/word/${data.word_id}/like`, {
+  fetch(`http://3.34.131.76:8000/word/${data.word_id}/like`, {
       method: 'POST',
     headers: { Authorization : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.Sj80GQrZjMkZQ7ofkOTWpkFd1W9W5B9Is9WezpY6d_c'}
   })
@@ -24,12 +24,12 @@ const MainCard = ({data, index}) => {
   };
 
   const onDisLike = () => {
-    fetch(`http://10.58.0.113:8000/word/${data.word_id}/dislike`, {
+    fetch(`http://3.34.131.76:8000/word/${data.word_id}/dislike`, {
       method: 'POST',
       headers: { Authorization : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.Sj80GQrZjMkZQ7ofkOTWpkFd1W9W5B9Is9WezpY6d_c'}
     })
       .then((res)=> {setDislike(res.word_dislike)
-      });
+      },[]);
   }
   
 

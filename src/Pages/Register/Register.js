@@ -16,7 +16,7 @@ const   Register  = () => {
   const [wordExample, setWordExample] = useState("");
 
   useEffect(()=>{
-    fetch('http://10.58.2.97:8000/account/nickname', {
+    fetch('http://3.34.131.76:8000/account/nickname', {
     headers: {Authorization: localStorage.getItem('token')}
   })
 .then((res)=> res.json())
@@ -27,7 +27,7 @@ const   Register  = () => {
   
 
   useEffect(()=>{
-    fetch('http://10.58.2.97:8000/word/category?menu_id=4')
+    fetch('http://3.34.131.76:8000/word/category?menu_id=4')
       .then((res)=> res.json())
       .then((res) => setCategory(res.category_list))
   },[])
@@ -51,7 +51,7 @@ const   Register  = () => {
 
   
   const registerWord = () => {
-    fetch('http://10.58.2.97:8000/word/new', {
+    fetch('http://3.34.131.76:8000/word/new', {
       method: 'POST',
       headers: {Authorization: localStorage.getItem('token')},
       body: JSON.stringify({

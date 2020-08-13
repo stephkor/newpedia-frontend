@@ -10,7 +10,7 @@ const  MainSlider = () => {
   const [category, setCategory] = useState([]);
    
   useEffect(() => {
-    fetch('http://10.58.4.149:8000/word/list')
+    fetch('http://3.34.131.76:8000//word/list')
       .then((res)=> res.json())
       .then((res) => {
         setData(res.word_list.slice(0,30))

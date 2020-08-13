@@ -40,7 +40,7 @@ class LoginModal extends React.Component {
       data: res,
       token: res.access_token
     });
-    fetch('http://10.58.2.97:8000/account/sign-in/kakao', {
+    fetch('http://3.34.131.76:8000/account/sign-in/kakao', {
       //백엔드에서 원하는 형태의 endpoint로 입력해서 fetch한다. 
       method: 'POST',
       headers: {
@@ -59,13 +59,7 @@ class LoginModal extends React.Component {
   
  Logout = () => {
     localStorage.removeItem('token');
-    document.cookie = "crossCookie=bar; SameSite=None; Secure"
-   fetch('https://kauth.kakao.com/v1/user/unlink',{
-     method: 'POST',
-     headers: { 'Authorization' : localStorage.getItem('token'),
-     'Content-Type' : 'application/x-www-form-urlencoded',
-    }
-   })
+    document.cookie = "crossCookie=bar; SameSite=None; Secure"http://3.34.131.76:8000/
      .then(this.setState({
         token: "",
         nickname: "",
@@ -76,7 +70,6 @@ class LoginModal extends React.Component {
 
   
   render () {
-   console.log(localStorage.getItem('token'))
   return (
     <>
       <LoginButton type="button" onClick={()=>this.handleOpen()}
