@@ -15,9 +15,11 @@ class LoginModal extends React.Component {
       open: false,
       data: 'kakao',
       token: "",
-      
+      nickname: "",
+      nicknamemodal : <NickNameModal/>
     }
   }
+  
 
   handleOpen = () => {
     this.setState({
@@ -32,50 +34,56 @@ class LoginModal extends React.Component {
   }
 
   responseKaKao = (res) => {
+    document.cookie = 'cookie2=value2; SameSite=None; Secure';
     const {data} = this.state;
     this.setState({
       data: res,
       token: res.access_token
     });
-    fetch('http://10.58.3.83:8000/account/sign-in/kakao', {
+    fetch('http://10.58.2.97:8000/account/sign-in/kakao', {
       //백엔드에서 원하는 형태의 endpoint로 입력해서 fetch한다. 
       method: 'POST',
       headers: {
         Authorization: res.response.access_token,
         //받아오는 response객체의 access_token을 통해 유저 정보를 authorize한다. 
       },
-    })
+    },[])
       .then((res) => res.json())
       .then((res) => localStorage.setItem('token', res.access_token))
+      .then((res)=>  {this.handleClose()}
       //백엔드에서 요구하는 key 값(token)으로 저장해서 localStorage에 저장한다.
       //여기서 중요한것은 처음에 console.log(res)해서 들어오는
       //access_token 값을 백엔드에 전달해줘서 백엔드에 저장 해두는
-      //절차가 있으므로 까먹지 말 것!
-      .then((res) => {
-        if (res.satus === 200 && res.nickname) {
-          return this.handleClose()
-        } else if (res.status === 200 && res.nickcname === undefined) {
-           return <NickNameModal/>
-        }
-      })
+)
   };
   
  Logout = () => {
     localStorage.removeItem('token');
-    this.setState({
-        token: ""
-      }
-    )
+    document.cookie = "crossCookie=bar; SameSite=None; Secure"
+   fetch('https://kauth.kakao.com/v1/user/unlink',{
+     method: 'POST',
+     headers: { 'Authorization' : localStorage.getItem('token'),
+     'Content-Type' : 'application/x-www-form-urlencoded',
+    }
+   })
+     .then(this.setState({
+        token: "",
+        nickname: "",
+      })
+     )
   }
 
- 
 
+  
   render () {
    console.log(localStorage.getItem('token'))
   return (
     <>
-    <LoginButton type="button" onClick={()=>this.handleOpen()} style={{display: localStorage.getItem('token') === null ? "block" : "none"}}>로그인</LoginButton>
-    <LogoutButton type="button" onClick={()=>this.Logout()} style={{display: localStorage.getItem('token') !== null ? "block" : "none"}}>로그아웃</LogoutButton>
+      <LoginButton type="button" onClick={()=>this.handleOpen()}
+      style={{display: localStorage.getItem('token') === null ? "block" : "none"}}>로그인</LoginButton>
+    <LogoutButton type="button" onClick={()=>this.Logout()}
+      style={{display: localStorage.getItem('token') !== null ? "block" : "none"}}>
+      로그아웃</LogoutButton>
     <Modal
     open={this.state.open}
     onClose={()=>this.handleClose()}
@@ -91,8 +99,8 @@ class LoginModal extends React.Component {
               <KakaoLogin
               jsKey={'da1d636cd0f3a43fab28ca240132e346'}
               useDefaultStyle
-              onSuccess={(res)=>this.responseKaKao(res)}
-              getProfile={true} />
+              onSuccess={this.responseKaKao}
+               />
             </button>
         </div>
       </ModalBody>

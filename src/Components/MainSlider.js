@@ -7,19 +7,15 @@ import "slick-carousel/slick/slick-theme.css";
 const  MainSlider = () => {
   
   const [data, setData] = useState([]);
+  const [category, setCategory] = useState([]);
    
   useEffect(() => {
-<<<<<<< HEAD
-    // fetch('http://10.58.3.83:8000/word/list')
-  fetch('sliderWords.json')
-  .then((res)=> res.json())
-=======
-    fetch('http://10.58.3.54:8000/word/sub-list')
-    .then((res)=> res.json())
->>>>>>> master
-    .then((res) => {
-      setData(res.sub_word_list)
-    });
+    fetch('http://10.58.4.149:8000/word/list')
+      .then((res)=> res.json())
+      .then((res) => {
+        setData(res.word_list.slice(0,30))
+        setCategory(res.word_list.word_category)
+      });
   },[])
 
   const descriptionCut = (data) => {
@@ -31,15 +27,7 @@ const  MainSlider = () => {
       }
       return result;
     }
-    
-<<<<<<< HEAD
-=======
-  
-  
-  
 
->>>>>>> master
-  
     var settings = {
       dots: false,
       infinite: true,
@@ -55,13 +43,9 @@ const  MainSlider = () => {
       {data.map((data, index)=> <div className="component" style={{backgroundColor: "yellow"}} key={index} data={data} >
           <div>
             <h3>{data.word_name}</h3>
-<<<<<<< HEAD
             <p><span> 	뜻&#41; </span> <br/>{descriptionCut(data)}</p>
             <h4>{data.word_example}</h4>
-=======
-            <p>{descriptionCut(data)}</p>
-            <span>{data.word_example}</span>
->>>>>>> master
+            <span style={{backgroundColor: "#e8e8e8", padding: "5px", borderRadius: "25px",  }}>{data.word_category.toString()}</span>
           </div>
         </div>)}  
       </Slider>
