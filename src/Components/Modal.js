@@ -59,7 +59,7 @@ class LoginModal extends React.Component {
   
  Logout = () => {
     localStorage.removeItem('token');
-    document.cookie = "crossCookie=bar; SameSite=None; Secure"http://3.34.131.76:8000/
+    document.cookie = "crossCookie=bar; SameSite=None; Secure"
      .then(this.setState({
         token: "",
         nickname: "",
